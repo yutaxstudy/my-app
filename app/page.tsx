@@ -274,19 +274,27 @@ clearTimeout(timer);
         </div>
 
         <div style={styles.buttons}>
-          {categories.map((category) => (
-            <button
-              key={category}
-              style={chip(selectedCategory === category)}
-              onClick={() => {
-                setSelectedCategory(category);
-                resetView();
-              }}
-            >
-              {categoryLabels[category] ?? category}
-            </button>
-          ))}
-        </div>
+  <select
+    value={selectedCategory}
+    onChange={(e) => {
+      setSelectedCategory(e.target.value);
+      resetView();
+    }}
+    style={{
+      padding: "12px",
+      fontSize: "16px",
+      borderRadius: "12px",
+      width: "100%",
+      maxWidth: "300px",
+    }}
+  >
+    {categories.map((category) => (
+      <option key={category} value={category}>
+        {categoryLabels[category] ?? category}
+      </option>
+    ))}
+  </select>
+</div>
 
         <div style={styles.buttons}>
           {["all", "A", "B", "C"].map((importance) => (
